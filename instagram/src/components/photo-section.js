@@ -68,9 +68,9 @@ const styles = {
     borderBottomWidth: 1,
     padding: 5,
     justifyContent: 'flex-start',
-    flexDirection: 'row',
-    borderColor: '#ddd'
-	},
+    borderColor: '#ddd',
+    flexDirection: 'row'
+  },
 
   imageMeta: {
     paddingTop: 10,
