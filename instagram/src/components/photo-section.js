@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
 import { View, Text, Image, Button, TouchableWithoutFeedback } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
 class PhotoSection extends Component {
   constructor() {
     super()
     this.like = false;
-    this.state = { heartIcon: require('../../img/outline.png') };
+    this.state = { heartIcon: 'ios-heart-outline' };
   }
 
   handleOnPress = () => {
     this.like = !this.like;
-    this.like ? this.setState({ heartIcon: require('../../img/filledin.jpg') }) : this.setState({ heartIcon: require('../../img/outline.png') });
+    this.like ? this.setState({ heartIcon: 'ios-heart' }) : this.setState({ heartIcon: 'ios-heart-outline' });
   }
 
   render() {
@@ -34,7 +35,11 @@ class PhotoSection extends Component {
 
         <View style={styles.heartContainer}>
           <TouchableWithoutFeedback onPress={this.handleOnPress.bind(this)}>
-            <Image style={{ width: 30, height: 30}} source={this.state.heartIcon} />
+            <Ionicons
+              name={this.state.heartIcon}
+              size={30}
+              style={{ color: this.state.heartIcon === 'ios-heart' ? 'red' : 'black' }}
+            />
           </TouchableWithoutFeedback>
         </View>
 
@@ -60,11 +65,11 @@ const styles = {
   },
 
   thumbnailSection: {
-		borderBottomWidth: 1,
-		padding: 5,
-		justifyContent: 'flex-start',
-		flexDirection: 'row',
-		borderColor: '#ddd'
+    borderBottomWidth: 1,
+    padding: 5,
+    justifyContent: 'flex-start',
+    flexDirection: 'row',
+    borderColor: '#ddd'
 	},
 
   imageMeta: {
