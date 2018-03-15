@@ -1,21 +1,17 @@
 import React, {Component} from 'react';
-import { View, Text, Image, Button } from 'react-native';
+import { View, Text, Image, Button, TouchableWithoutFeedback } from 'react-native';
 
 
 class PhotoSection extends Component {
   constructor() {
     super()
-    this.state = { like: false, likeText: 'Like' };
+    this.like = false;
+    this.state = { heartIcon: require('../../img/outline.png') };
   }
 
   handleOnPress = () => {
-    const newLikeState = !this.state.like;
-
-    this.setState({
-      like: newLikeState
-    });
-
-    newLikeState ? this.setState({ likeText: 'Liked' }) : this.setState({ likeText: 'Like' })
+    this.like = !this.like;
+    this.like ? this.setState({ heartIcon: require('../../img/filledin.jpg') }) : this.setState({ heartIcon: require('../../img/outline.png') });
   }
 
   render() {
@@ -36,12 +32,14 @@ class PhotoSection extends Component {
           <Image source={{uri: image}} style={styles.photo} resizeMode="contain" />
         </View>
 
-        <View style={styles.imageMeta}>
-          <Text> <Text style={styles.userName}>{username}</Text> {caption}</Text>
+        <View style={styles.heartContainer}>
+          <TouchableWithoutFeedback onPress={this.handleOnPress.bind(this)}>
+            <Image style={{ width: 30, height: 30}} source={this.state.heartIcon} />
+          </TouchableWithoutFeedback>
         </View>
 
-        <View style={styles.buttonContainer}>
-          <Button title={this.state.likeText} onPress={this.handleOnPress.bind(this)} />
+        <View style={styles.imageMeta}>
+          <Text> <Text style={styles.userName}>{username}</Text> {caption}</Text>
         </View>
       </View>
     );
@@ -94,10 +92,12 @@ const styles = {
     paddingLeft: 5
   },
 
-  buttonContainer: {
+  heartContainer: {
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    paddingLeft: 5
+    paddingLeft: 10,
+    paddingTop: 10,
+    paddingBottom: 5
   }
 };
 
