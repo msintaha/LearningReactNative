@@ -10,12 +10,12 @@ import AppNavigation from './src/navigation';
 export default class App extends React.Component {
   componentDidMount() {
     const config = {
-      apiKey: "AIzaSyAn_ZJ2L-QLOptTFAzI5Pms4mpbOgDP8Pk",
-      authDomain: "ideapad-856f8.firebaseapp.com",
-      databaseURL: "https://ideapad-856f8.firebaseio.com",
-      projectId: "ideapad-856f8",
+      apiKey: "",
+      authDomain: "",
+      databaseURL: "",
+      projectId: "",
       storageBucket: "",
-      messagingSenderId: "1065165377834"
+      messagingSenderId: ""
     };
     firebase.initializeApp(config);
   }
